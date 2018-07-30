@@ -9,6 +9,15 @@ Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.LANDSCAPE);
 
 StatusBar.setHidden(true)
 
+const copy = `# h1 Heading 8-)
+
+| Option | Description |
+| ------ | ----------- |
+| data   | path to data files to supply the data that will be passed into templates. |
+| engine | engine to be used for processing templates. Handlebars is the default. |
+| ext    | extension to be used for dest files. |
+`;
+
 
 //consider borders/ options in first page
 
@@ -127,7 +136,7 @@ const createScreen = ({title,content,next}) => (props) => (
     <View style={[styles.header, { backgroundColor: '#FFE04D' }]}>
       <Text>{title}</Text>
     </View>
-    <ScrollView style={{padding:20}/*styles.content*/}>
+    <ScrollView style={{padding:10}/*styles.content*/}>
       <Transition appear="horizontal">
         <Markdown>{content}</Markdown>
       </Transition>
