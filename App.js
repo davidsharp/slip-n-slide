@@ -136,7 +136,7 @@ const createScreen = ({title,content,next}) => (props) => (
     <View style={[styles.header, { backgroundColor: '#FFE04D' }]}>
       <Text>{title}</Text>
     </View>
-    <ScrollView style={{padding:10}/*styles.content*/}>
+    <ScrollView style={{padding:20}/*styles.content*/}>
       <Transition appear="horizontal">
         <Markdown>{content}</Markdown>
       </Transition>
