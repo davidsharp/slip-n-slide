@@ -79,19 +79,9 @@ const Circle = (props) => (
   />
 );
 
-/*const Square = (props) => (
-  <View style={{
-    backgroundColor: props.background,
-    width: props.size,
-    height: props.size,
-    margin: 14 }}
-  />
-);*/
-
 const Screen1 = (props) => (
   <View style={styles.container}>
     <View style={[styles.top, { flex:1, backgroundColor: '#AA3939' }]}>
-      {/*<Image source={require('./title-photo.jpg')} resizeMode='cover'/>*/}
       <TouchableWithoutFeedback onPress={() => props.navigation.navigate('hello1')}>
       <ImageBackground source={require('./title-photo.jpg')} style={{width: '100%', height: '100%'}}>
       <View style={styles.content}>
@@ -105,56 +95,11 @@ const Screen1 = (props) => (
         </View>
       </Transition>
     </View>
-    {/*<View style={styles.footer}>
-      <Transition appear="horizontal">
-        <Button title="Next" onPress={() => props.navigation.navigate('hello1')/*('screen2')* /} />
-      </Transition>
-    </View>*/}
       </ImageBackground>
       </TouchableWithoutFeedback>
     </View>
   </View>
 );
-
-/*const Screen2 = (props) => (
-  <View style={styles.container}>
-    <View style={[styles.top, { backgroundColor: '#2E4272' }]}>
-      <Transition appear="horizontal">
-        <Square background="#FFE04D" size={140} />
-      </Transition>
-      <View style={styles.circlesContainer}>
-        <Transition appear="horizontal" delay>
-          <Square background="#6EB4CD" size={40} />
-        </Transition>
-        <Transition appear="horizontal" delay>
-          <Square background="#061539" size={40} />
-        </Transition>
-        <Transition appear="horizontal" delay>
-          <Square background="#061539" size={40} />
-        </Transition>
-      </View>
-    </View>
-    <View style={styles.content}>
-      <Transition appear="horizontal">
-        <View>
-          <Text style={styles.textBold}>This is the second page</Text>
-          <Text style={styles.text}>
-            Here are some more individual transitions!
-          </Text>
-        </View>
-      </Transition>
-    </View>
-    <View style={styles.footer}>
-      <Transition appear="horizontal">
-        <Button title="Back" onPress={() => props.navigation.goBack()} />
-      </Transition>
-      <View style={{ width: 20 }} />
-      <Transition appear="horizontal">
-        <Button title="Next" onPress={() => props.navigation.navigate('hello1')} />
-      </Transition>
-    </View>
-  </View>
-);*/
 
 const Screen3 = (props) => (
   <View style={styles.container}>
@@ -177,8 +122,7 @@ const Screen3 = (props) => (
     <View style={styles.content}>
       <Transition appear="horizontal">
         <View>
-          <Text style={styles.textBold}>This is the last page</Text>
-          <Text style={styles.text}>Navigate back to see the reversed transitions.</Text>
+          <Text style={styles.textBold}>Fin</Text>
         </View>
       </Transition>
     </View>
@@ -215,7 +159,6 @@ const createScreen = ({title,content,next}) => (props) => (
 //This isn't being used, it's basically here because we really on the Navigator's router for some reason
 const screens={
   screen1: { screen: Screen1 },
-  //screen2: { screen: Screen2 },
   screen3: { screen: Screen3 }
 }
 const slides = [
@@ -242,7 +185,6 @@ class App extends React.Component {
     super(props)
     this.getSlides().then(slides=>{
       const screens={screen1: { screen: Screen1 },
-      //screen2: { screen: Screen2 },
       screen3: { screen: Screen3 }}
       slides.forEach((c,i,a)=>{
         const {title,copy:content,next,component}=c
