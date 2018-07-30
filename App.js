@@ -185,7 +185,7 @@ class App extends React.Component {
       screen3: { screen: Screen3 }}
       slides.forEach((c,i,a)=>{
         const {title,copy:content,next,component}=c
-        screens[title]={screen: createScreen({title,content:content.split('\\n').join('\n'),next,component})}
+        screens[title]={screen: createScreen({title,content:content.split('\\n').join('\n').split('!!').join('\n'),next,component})}
       })
       this.setState({
       slides,
