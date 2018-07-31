@@ -76,10 +76,10 @@ const Circle = (props) => (
   />
 );
 
-const Screen1 = (props) => (
+const Splash = (props) => (
   <View style={styles.container}>
     <View style={[styles.top, { flex:1, backgroundColor: '#AA3939' }]}>
-      <TouchableWithoutFeedback onPress={() => props.navigation.navigate('hello1')}>
+      <TouchableWithoutFeedback onPress={() => props.navigation.navigate('slide-0')}>
       <ImageBackground source={require('./title-photo.jpg')} style={{width: '100%', height: '100%'}}>
       <View style={styles.content}>
       <Transition appear="horizontal">
@@ -98,7 +98,7 @@ const Screen1 = (props) => (
   </View>
 );
 
-const Screen3 = (props) => (
+const Fin = (props) => (
   <View style={styles.container}>
     <View style={[styles.top, { backgroundColor: '#88CC88' }]}>
       <Transition appear="horizontal">
@@ -155,10 +155,10 @@ const createScreen = ({title,content,next}) => (props) => (
 
 //This isn't being used, it's basically here because we really on the Navigator's router for some reason
 const screens={
-  screen1: { screen: Screen1 },
-  screen3: { screen: Screen3 }
+  screen1: { screen: Splash },
+  //screen3: { screen: Fin }
 }
-const slides = [
+/*const slides = [
   { title: 'hello1',copy:copy,next:'hello2' },
   { title: 'hello2',copy:copy,next:'hello3' },
   { title: 'hello3',copy:copy+'\n`test test test`',next:'screen3' }
@@ -166,7 +166,7 @@ const slides = [
 slides.forEach((c,i,a)=>{
   const {title,copy:content,next,component}=c
   screens[title]={screen: createScreen({title,content,next,component})}
-});
+});*/
 const Navigator = FluidNavigator(screens, {
   mode: 'card',
   navigationOptions: {
@@ -181,11 +181,11 @@ class App extends React.Component {
   constructor(props){
     super(props)
     this.getSlides().then(slides=>{
-      const screens={screen1: { screen: Screen1 },
-      screen3: { screen: Screen3 }}
+      const screens={intro: { screen: Splash },
+      fin: { screen: Fin }}
       slides.forEach((c,i,a)=>{
         const {title,copy:content,next,component}=c
-        screens[title]={screen: createScreen({title,content:content.split('\\n').join('\n').split('!!').join('\n'),next,component})}
+        screens['slide-'+i]={screen: createScreen({title,content:content.split('\\n').join('\n').split('!!').join('\n'),next:i!=a.length-1?'slide-'+(i+1):'fin',component})}
       })
       this.setState({
       slides,
