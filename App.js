@@ -182,7 +182,7 @@ class App extends React.Component {
     super(props)
     this.getSlides().then(slides=>{
       const screens={
-        blah: { screen: createExampleScreen({title:'touch',Example:Examples.TouchExample,next:'intro'}) },
+        //blah: { screen: createExampleScreen({title:'touch',Example:Examples.TouchExample,next:'intro'}) },
         intro: { screen: Splash },
         fin: { screen: Fin }
       }
