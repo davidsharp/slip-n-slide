@@ -1,3 +1,11 @@
+# slip-n-slide
+
+A React Native app written for use in an Expo (imported via this git repo) to display slides from a Glitch project that just returns some transpiled JSON5 (currently `happy-garage`) containing slide titles and some markdown content
+
+As you can see, most things are baked in, such as the splash image and colour choices, ideally I'd stick an interstitial page at the front to allow you to point at an endpoint for your slides, drive the colours and images off data, power the start and end pages with the JSON, etc. For now it just needs to work for me on Thursday for asyncjs.com/react-native
+
+---
+
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
