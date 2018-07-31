@@ -9,16 +9,6 @@ Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.LANDSCAPE);
 
 StatusBar.setHidden(true)
 
-const copy = `# h1 Heading 8-)
-
-| Option | Description |
-| ------ | ----------- |
-| data   | path to data files to supply the data that will be passed into templates. |
-| engine | engine to be used for processing templates. Handlebars is the default. |
-| ext    | extension to be used for dest files. |
-`;
-
-
 //consider borders/ options in first page
 
 const styles = StyleSheet.create({
@@ -154,20 +144,7 @@ const createScreen = ({title,content,next}) => (props) => (
 );
 
 //This isn't being used, it's basically here because we really on the Navigator's router for some reason
-const screens={
-  screen1: { screen: Splash },
-  //screen3: { screen: Fin }
-}
-/*const slides = [
-  { title: 'hello1',copy:copy,next:'hello2' },
-  { title: 'hello2',copy:copy,next:'hello3' },
-  { title: 'hello3',copy:copy+'\n`test test test`',next:'screen3' }
-]
-slides.forEach((c,i,a)=>{
-  const {title,copy:content,next,component}=c
-  screens[title]={screen: createScreen({title,content,next,component})}
-});*/
-const Navigator = FluidNavigator(screens, {
+const Navigator = FluidNavigator({screen1: { screen: Splash }}, {
   mode: 'card',
   navigationOptions: {
     gesturesEnabled: true,
