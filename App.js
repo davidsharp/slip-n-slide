@@ -7,6 +7,9 @@ import Markdown from 'react-native-markdown-renderer';
 import Expo from 'expo'
 Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.LANDSCAPE);
 
+import Examples, {TouchExample} from './examples'
+console.log(Examples)
+
 StatusBar.setHidden(true)
 
 //consider borders/ options in first page
@@ -143,6 +146,26 @@ const createScreen = ({title,content,next}) => (props) => (
   </View>
 );
 
+const createExampleScreen = ({title, next, Example}) => (props) => (
+  <View style={styles.container}>
+    <View style={[styles.header, { backgroundColor: '#FFE04D' }]}>
+      <Text>{title}</Text>
+    </View>
+    <ScrollView style={{padding:20}}>
+      <Example/>
+    </ScrollView>
+    <View style={styles.footer}>
+    <Transition appear="horizontal">
+        <Button title="<" onPress={() => props.navigation.goBack()} />
+      </Transition>
+      <View style={{ width: 20 }} />
+      <Transition appear="horizontal">
+        <Button title=">" onPress={() => props.navigation.navigate(next)} />
+      </Transition>
+      </View>
+  </View>
+);
+
 //This isn't being used, it's basically here because we really on the Navigator's router for some reason
 const Navigator = FluidNavigator({screen1: { screen: Splash }}, {
   mode: 'card',
@@ -158,8 +181,11 @@ class App extends React.Component {
   constructor(props){
     super(props)
     this.getSlides().then(slides=>{
-      const screens={intro: { screen: Splash },
-      fin: { screen: Fin }}
+      const screens={
+        blah: { screen: createExampleScreen({title:'touch',Example:Examples.TouchExample,next:'intro'}) },
+        intro: { screen: Splash },
+        fin: { screen: Fin }
+      }
       slides.forEach((c,i,a)=>{
         const {title,copy:content,next,component}=c
         screens['slide-'+i]={screen: createScreen({title,content:content.split('\\n').join('\n').split('!!').join('\n'),next:i!=a.length-1?'slide-'+(i+1):'fin',component})}
