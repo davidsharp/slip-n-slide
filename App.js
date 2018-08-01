@@ -125,27 +125,18 @@ const Fin = (props) => (
 );
 
 const createScreen = ({title,content,next}) => (props) => (
-  <View style={styles.container}>
-    <TouchableWithoutFeedback onPress={() => props.navigation.navigate(next)}>
-    <View style={[styles.header, { backgroundColor: '#FFE04D' }]}>
-      <Text>{title}</Text>
+  <TouchableWithoutFeedback onPress={() => props.navigation.navigate(next)}>
+    <View style={styles.container}>
+      <View style={[styles.header, { backgroundColor: '#FFE04D' }]}>
+        <Text>{title}</Text>
+      </View>
+      <ScrollView style={{padding:20}/*styles.content*/}>
+        <Transition appear="horizontal">
+          <Markdown>{content}</Markdown>
+        </Transition>
+      </ScrollView>
     </View>
-    </TouchableWithoutFeedback>
-    <ScrollView style={{padding:20}/*styles.content*/}>
-      <Transition appear="horizontal">
-        <Markdown>{content}</Markdown>
-      </Transition>
-    </ScrollView>
-    {/*<View style={styles.footer}>
-    <Transition appear="horizontal">
-        <Button title="<" onPress={() => props.navigation.goBack()} />
-      </Transition>
-      <View style={{ width: 20 }} />
-      <Transition appear="horizontal">
-        <Button title=">" onPress={() => props.navigation.navigate(next)} />
-      </Transition>
-    </View>*/}
-  </View>
+  </TouchableWithoutFeedback>
 );
 
 const createExampleScreen = ({title, next, Example}) => (props) => (
@@ -179,7 +170,7 @@ const Navigator = FluidNavigator({screen1: { screen: Splash }}, {
 
 class App extends React.Component {
   static router = Navigator.router;
-  state = {slides:[],ThisNavigator:false}
+  state = {slides:[],ThisNavigator:false,fourByThree:true,leftOffset:0,padding:20}
   constructor(props){
     super(props)
     this.getSlides().then(slides=>{
@@ -215,12 +206,18 @@ class App extends React.Component {
       });
   }
   render() {
-    const fourByThree = true
+    const fourByThree = this.state.fourByThree
     const ThisNavigator = this.state.ThisNavigator
+    const leftOffset = this.state.leftOffset
+    const padding = this.state.padding
     return (<View style={{flex: 1, flexDirection: 'row'}}>
       <Expo.KeepAwake />
       {fourByThree && <View style={{flex: 2, backgroundColor:'black'}}/>}
-      <View style={{flex: 12}}>{ThisNavigator && <ThisNavigator navigation={this.props.navigation} />}</View>
+      <View style={{flex: 12, backgroundColor:'black', padding, paddingLeft:padding+leftOffset}}>
+        <View style={{flex:1, backgroundColor:'white'}}>
+          {ThisNavigator && <ThisNavigator navigation={this.props.navigation} />}
+        </View>
+      </View>
       {fourByThree && <View style={{flex: 2, backgroundColor:'black'}}/>}
     </View>);
   }
