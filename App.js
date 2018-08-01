@@ -215,10 +215,13 @@ class App extends React.Component {
       });
   }
   render() {
+    const fourByThree = true
     const ThisNavigator = this.state.ThisNavigator
-    return (<View style={{flex:1}}>
+    return (<View style={{flex: 1, flexDirection: 'row'}}>
       <Expo.KeepAwake />
-      {ThisNavigator && <ThisNavigator navigation={this.props.navigation} />}
+      {fourByThree && <View style={{flex: 2, backgroundColor:'black'}}/>}
+      <View style={{flex: 12}}>{ThisNavigator && <ThisNavigator navigation={this.props.navigation} />}</View>
+      {fourByThree && <View style={{flex: 2, backgroundColor:'black'}}/>}
     </View>);
   }
 }
