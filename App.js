@@ -136,7 +136,7 @@ const createScreen = ({title,content,next}) => (props) => (
         <Markdown>{content}</Markdown>
       </Transition>
     </ScrollView>
-    <View style={styles.footer}>
+    {/*<View style={styles.footer}>
     <Transition appear="horizontal">
         <Button title="<" onPress={() => props.navigation.goBack()} />
       </Transition>
@@ -144,7 +144,7 @@ const createScreen = ({title,content,next}) => (props) => (
       <Transition appear="horizontal">
         <Button title=">" onPress={() => props.navigation.navigate(next)} />
       </Transition>
-      </View>
+    </View>*/}
   </View>
 );
 
