@@ -126,9 +126,11 @@ const Fin = (props) => (
 
 const createScreen = ({title,content,next}) => (props) => (
   <View style={styles.container}>
+    <TouchableWithoutFeedback onPress={() => props.navigation.navigate(next)}>
     <View style={[styles.header, { backgroundColor: '#FFE04D' }]}>
       <Text>{title}</Text>
     </View>
+    </TouchableWithoutFeedback>
     <ScrollView style={{padding:20}/*styles.content*/}>
       <Transition appear="horizontal">
         <Markdown>{content}</Markdown>
