@@ -125,18 +125,18 @@ const Fin = (props) => (
 );
 
 const createScreen = ({title,content,next}) => (props) => (
-  <TouchableWithoutFeedback onPress={() => props.navigation.navigate(next)}>
     <View style={styles.container}>
-      <View style={[styles.header, { backgroundColor: '#FFE04D' }]}>
-        <Text>{title}</Text>
-      </View>
-      <ScrollView style={{padding:20}/*styles.content*/}>
+      <TouchableWithoutFeedback onPress={() => props.navigation.navigate(next)}>
+        <View style={[styles.header, { backgroundColor: '#FFE04D' }]}>
+          <Text>{title}</Text>
+        </View>
+      </TouchableWithoutFeedback>
+      <ScrollView style={{margin:20}/*styles.content*/}>
         <Transition appear="horizontal">
           <Markdown>{content}</Markdown>
         </Transition>
       </ScrollView>
     </View>
-  </TouchableWithoutFeedback>
 );
 
 const createExampleScreen = ({title, next, Example}) => (props) => (
@@ -144,7 +144,7 @@ const createExampleScreen = ({title, next, Example}) => (props) => (
     <View style={[styles.header, { backgroundColor: '#FFE04D' }]}>
       <Text>{title}</Text>
     </View>
-    <ScrollView style={{padding:20}}>
+    <ScrollView style={{margin:20}}>
       <Example/>
     </ScrollView>
     <View style={styles.footer}>
